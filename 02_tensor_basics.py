@@ -7,14 +7,14 @@ import torch
 # scalar, vector, matrix, tensor
 
 # torch.empty(size): uninitiallized
-x = torch.empty(1) # scalar
+x = torch.empty(1)  # scalar
 print(x)
-x = torch.empty(3) # vector, 1D
+x = torch.empty(3)  # vector, 1D
 print(x)
-x = torch.empty(2,3) # matrix, 2D
+x = torch.empty(2, 3)  # matrix, 2D
 print(x)
-x = torch.empty(2,2,3) # tensor, 3 dimensions
-#x = torch.empty(2,2,2,3) # tensor, 4 dimensions
+x = torch.empty(2, 2, 3)  # tensor, 3 dimensions
+# x = torch.empty(2,2,2,3) # tensor, 4 dimensions
 print(x)
 
 # torch.rand(size): random numbers [0, 1]
@@ -67,21 +67,21 @@ z = torch.sub(x, y)
 
 # multiplication
 z = x * y
-z = torch.mul(x,y)
+z = torch.mul(x, y)
 
 # division
 z = x / y
-z = torch.div(x,y)
+z = torch.div(x, y)
 
 # Slicing
-x = torch.rand(5,3)
+x = torch.rand(5, 3)
 print(x)
-print(x[:, 0]) # all rows, column 0
-print(x[1, :]) # row 1, all columns
-print(x[1,1]) # element at 1, 1
+print(x[:, 0])  # all rows, column 0
+print(x[1, :])  # row 1, all columns
+print(x[1, 1])  # element at 1, 1
 
 # Get the actual value if only 1 element in your tensor
-print(x[1,1].item())
+print(x[1, 1].item())
 
 # Reshape with torch.view()
 x = torch.randn(4, 4)
@@ -109,6 +109,7 @@ print(b)
 
 # numpy to torch with .from_numpy(x)
 import numpy as np
+
 a = np.ones(5)
 b = torch.from_numpy(a)
 print(a)
@@ -122,11 +123,13 @@ print(b)
 # by default all tensors are created on the CPU,
 # but you can also move them to the GPU (only if it's available )
 if torch.cuda.is_available():
-    device = torch.device("cuda")          # a CUDA device object
+    device = torch.device("cuda")  # a CUDA device object
     y = torch.ones_like(x, device=device)  # directly create a tensor on GPU
-    x = x.to(device)                       # or just use strings ``.to("cuda")``
+    x = x.to(device)  # or just use strings ``.to("cuda")``
     z = x + y
     # z = z.numpy() # not possible because numpy cannot handle GPU tenors
     # move to CPU again
-    z.to("cpu")       # ``.to`` can also change dtype together!
+    z.to("cpu")  # ``.to`` can also change dtype together!
     # z = z.numpy()
+
+x = torch.ones(5, requires_grad=True)
